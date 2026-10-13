@@ -120,6 +120,11 @@ Linestring simplify(Linestring const &ls, double max_distance)
 {
 	Linestring result;
 	boost::geometry::simplify(ls, result, max_distance);
+	if(boost::geometry::length(result) >= max_distance) {
+		return result;
+	}
+	
+	result = Linestring();
 	return result;
 }
 
